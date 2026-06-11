@@ -36,6 +36,8 @@ export const metadata: Metadata = {
   description: "OutRide has a premium collection of +1000 high-end luxury and vintage cars. Book your dream car and get your first 5 days free.",
 };
 
+import SmoothScroll from "./components/SmoothScroll";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -43,7 +45,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${outfit.variable} ${playfair.variable} ${rosmatika.variable}`}>
-      <body>{children}</body>
+      <body>
+        <SmoothScroll>{children}</SmoothScroll>
+      </body>
     </html>
   );
 }

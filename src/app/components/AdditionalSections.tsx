@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import styles from "./AdditionalSections.module.css";
 
 export default function AdditionalSections() {
@@ -20,92 +21,168 @@ export default function AdditionalSections() {
   };
 
   return (
-    <div className={styles.container}>
-      {/* 1. Stats Section */}
+    <div id="additional-sections" className={styles.container}>
+      {/* 1. Stats Section (Technical Spec Matrix) */}
       <section className={styles.statsSection}>
         <div className={styles.statsGrid}>
-          <div className={styles.statCard}>
-            <span className={styles.statValue}>518 HP</span>
-            <span className={styles.statLabel}>
-              HIGH-REVVING NATURALLY ASPIRATED
-            </span>
+          {/* Left Column Spec Header */}
+          <div className={styles.statsHeader}>
+            <span className={styles.statsSectionNum}>01 / MATRIX</span>
+            <h2 className={styles.statsSectionTitle}>
+              TECHNICAL <br /> SPECIFICATIONS
+            </h2>
+            <p className={styles.statsSectionDesc}>
+              Engineering benchmarks that define the boundaries of the naturally aspirated flat-six system.
+            </p>
           </div>
-          <div className={styles.statCard}>
-            <span className={styles.statValue}>2.7s</span>
-            <span className={styles.statLabel}>
-              0-60 MPH ACCELERATION
-            </span>
-          </div>
-          <div className={styles.statCard}>
-            <span className={styles.statValue}>860kg</span>
-            <span className={styles.statLabel}>
-              TOTAL DOWNFORCE AT 205 KM/H
-            </span>
+
+          {/* Right Column Specs Table */}
+          <div className={styles.specContainer}>
+            {/* Stat Row 1 */}
+            <motion.div
+              className={styles.specRow}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.8, delay: 0, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <span className={styles.specValue}>518 HP</span>
+              <div className={styles.specMeta}>
+                <span className={styles.specLabel}>HIGH-REVVING NATURAL</span>
+                <span className={styles.specSubLabel}>Maximum power output at 9,000 rpm</span>
+              </div>
+            </motion.div>
+
+            {/* Stat Row 2 */}
+            <motion.div
+              className={styles.specRow}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <span className={styles.specValue}>2.7s</span>
+              <div className={styles.specMeta}>
+                <span className={styles.specLabel}>0-60 MPH LAUNCH</span>
+                <span className={styles.specSubLabel}>Instantaneous PDK dual-clutch action</span>
+              </div>
+            </motion.div>
+
+            {/* Stat Row 3 */}
+            <motion.div
+              className={styles.specRow}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <span className={styles.specValue}>860kg</span>
+              <div className={styles.specMeta}>
+                <span className={styles.specLabel}>TOTAL DOWNFORCE</span>
+                <span className={styles.specSubLabel}>Active wing-drag reduction at 285 km/h</span>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* 2. Paradox of Power Section */}
+      {/* 2. Paradox of Power Section (Editorial Essay) */}
       <section className={styles.storySection}>
-        <div className={styles.storyContentGrid}>
-          {/* Left Side: Headline */}
-          <div className={styles.storyHeader}>
+        <div className={styles.storyLayout}>
+          {/* Left Column: Sticky Title */}
+          <div className={styles.storyStickyCol}>
+            <span className={styles.storySectionNum}>02 / NARRATIVE</span>
             <h2 className={styles.storyTitle}>
-              THE PARADOX <br />
-              OF <span className={styles.storyTitleHighlight}>POWER</span>
+              THE PARADOX <span className={styles.storyTitleHighlight}>of power</span>
             </h2>
           </div>
 
-          {/* Right Side: Copy & CTA */}
-          <div className={styles.storyTextContainer}>
-            <p className={styles.storyParagraph}>
-              It exists in the tension between the roar of the flat-six engine
-              and the silence of a summer field. To witness the GT3 RS in
-              this landscape is to see raw, technical power bowing to the
-              organic rhythm of the earth. Every carbon fiber weave, every
-              aerodynamic vent is a testament to human ingenuity—crafted
-              not to defy nature, but to dance within it.
-            </p>
-            <p className={styles.storyParagraphSub}>
-              We don&apos;t just build machines; we create instruments of precision
-              that allow the driver to experience the world at a different
-              frequency. This is the art of performance.
-            </p>
-            <button className={styles.storyCta} aria-label="Read the story">
-              <span>READ THE STORY</span>
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className={styles.storyCtaArrow}
-              >
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </button>
-          </div>
-        </div>
+          {/* Right Column: Editorial Essay */}
+          <div className={styles.storyEssayCol}>
+            <motion.blockquote
+              className={styles.essayQuote}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            >
+              &ldquo;It exists in the tension between the roar of the flat-six engine and the silence of a summer field.&rdquo;
+            </motion.blockquote>
 
-        {/* Story Visual Banner */}
-        <div className={styles.imageWrapper}>
-          <Image
-            src="/porsche_gt3rs_field.png"
-            alt="Porsche 911 GT3 RS parked in a scenic summer field"
-            width={1200}
-            height={600}
-            className={styles.storyImage}
-            priority={false}
-          />
-          <div className={styles.imageOverlay} />
+            <div className={styles.essayBody}>
+              <motion.p
+                className={`${styles.essayParagraph} ${styles.dropcap}`}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              >
+                To witness the GT3 RS in this landscape is to see raw, technical power bowing to the organic rhythm of the earth. Every carbon fiber weave, every aerodynamic vent is a testament to human ingenuity—crafted not to defy nature, but to dance within it.
+              </motion.p>
+
+              <motion.p
+                className={styles.essayParagraphSub}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              >
+                We don&apos;t just build machines; we create instruments of precision that allow the driver to experience the world at a different frequency. This is the art of performance.
+              </motion.p>
+
+              <motion.button
+                className={styles.storyCta}
+                aria-label="Read the story"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+                <span>Read the story</span>
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className={styles.storyCtaArrow}
+                >
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </motion.button>
+            </div>
+
+            {/* Visual Frame */}
+            <div className={styles.imageContainer}>
+              <motion.div
+                className={styles.imageWrapper}
+                initial={{ opacity: 0, scale: 0.98 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <Image
+                  src="/porsche_gt3rs_field.png"
+                  alt="Porsche 911 GT3 RS parked in a scenic summer field"
+                  width={1200}
+                  height={600}
+                  className={styles.storyImage}
+                  priority={false}
+                />
+              </motion.div>
+              <span className={styles.imageCaption}>
+                Fig. 04 — The 911 GT3 RS engaged in the surreal rhythms of Apex & Bloom.
+              </span>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* 3. Configure Section Banner */}
+      {/* 3. Configure Section Banner (Ambient Showcase) */}
       <section className={styles.configureSection}>
         <Image
           src="/porsche_detail.png"
@@ -116,21 +193,29 @@ export default function AdditionalSections() {
           priority={false}
         />
         <div className={styles.configureOverlay} />
-        <div className={styles.configureContent}>
+
+        <motion.div
+          className={styles.configureContent}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        >
           <div className={styles.configureTextGroup}>
-            <h3 className={styles.bannerSubtitle}>THE ART OF PRECISION.</h3>
-            <h3 className={styles.bannerSubtitle}>THE SOUL OF SPEED.</h3>
+            <span className={styles.bannerSubtitle}>03 / INDIVIDUALIZATION</span>
             <h2 className={styles.bannerMainTitle}>
-              DEFINE YOUR LEGACY ON THE TRACK AND THE ROAD.
+              THE ART OF PRECISION.<br />
+              THE SOUL OF SPEED.<br />
+              DEFINE YOUR LEGACY.
             </h2>
           </div>
           <button className={styles.configureCta}>
-            <span>CONFIGURE YOUR 911</span>
+            <span>Configure your 911</span>
           </button>
-        </div>
+        </motion.div>
       </section>
 
-      {/* 4. Footer Section */}
+      {/* 4. Footer Section (Corporate Matrix) */}
       <footer className={styles.footer}>
         <div className={styles.footerMainGrid}>
           {/* Column 1: Brand Info */}
@@ -197,34 +282,7 @@ export default function AdditionalSections() {
                 }`}
                 aria-label="Subscribe"
               >
-                {subscribed ? (
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                ) : (
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
-                  </svg>
-                )}
+                {subscribed ? "Subscribed" : "Join"}
               </button>
             </form>
           </div>
@@ -239,6 +297,14 @@ export default function AdditionalSections() {
             <a href="#">PRIVACY</a>
             <a href="#">TERMS</a>
             <a href="#">COOKIES</a>
+          </div>
+          <div className={styles.footerMeta}>
+            <div className={styles.metaItem}>
+              <span>48.7758° N, 9.1829° E</span>
+            </div>
+            <div className={styles.metaItem}>
+              <span>STUTTGART, DE / UTC +1</span>
+            </div>
           </div>
         </div>
       </footer>

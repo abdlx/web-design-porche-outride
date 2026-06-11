@@ -6,17 +6,16 @@ import styles from "./Hero.module.css";
 export default function Hero() {
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [videoSrc, setVideoSrc] = useState<string>("");
-  
+
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const stickyRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  
+
   // Direct DOM refs for high-performance style scrubbing
   const headerRef = useRef<HTMLElement>(null);
   const mainContentRef = useRef<HTMLElement>(null);
   const footerLeftRef = useRef<HTMLDivElement>(null);
   const footerRightRef = useRef<HTMLDivElement>(null);
-  const videoOverlayRef = useRef<HTMLDivElement>(null);
 
   // Preload video as a blob to make scroll scrubbing zero-latency
   useEffect(() => {
@@ -55,9 +54,9 @@ export default function Hero() {
       const rect = scrollContainer.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
       const scrollableHeight = rect.height - viewportHeight;
-      
+
       if (scrollableHeight <= 0) return;
-      
+
       const scrolled = -rect.top;
       const rawProgress = scrolled / scrollableHeight;
       targetProgress = Math.max(0, Math.min(1, rawProgress));
@@ -70,7 +69,7 @@ export default function Hero() {
     video.addEventListener("loadedmetadata", handleMetadata);
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleScroll, { passive: true });
-    
+
     // Initial runs
     handleScroll();
     if (video.readyState >= 1) {
@@ -81,7 +80,7 @@ export default function Hero() {
     const updateLoop = () => {
       // Lerp coefficient (0.09) for buttery smooth follow behavior
       currentProgress += (targetProgress - currentProgress) * 0.09;
-      
+
       if (Math.abs(targetProgress - currentProgress) < 0.0001) {
         currentProgress = targetProgress;
       }
@@ -107,7 +106,7 @@ export default function Hero() {
         const rotate = currentProgress * 12;   // Drifting skid angle
         const scale = 1 - currentProgress * 0.22; // Shrink moving away
         const opacity = Math.max(0, 1 - currentProgress * 3.33); // Fade by 30% scroll
-        
+
         mainContent.style.transform = `translate(${transX}vw, ${transY}vh) rotate(${rotate}deg) scale(${scale})`;
         mainContent.style.opacity = opacity.toString();
         mainContent.style.pointerEvents = opacity <= 0.02 ? "none" : "auto";
@@ -121,7 +120,7 @@ export default function Hero() {
         const rotate = currentProgress * -6;
         const scale = 1 - currentProgress * 0.18;
         const opacity = Math.max(0, 1 - currentProgress * 3.33);
-        
+
         footerLeft.style.transform = `translate(${transX}vw, ${transY}vh) rotate(${rotate}deg) scale(${scale})`;
         footerLeft.style.opacity = opacity.toString();
         footerLeft.style.pointerEvents = opacity <= 0.02 ? "none" : "auto";
@@ -135,7 +134,7 @@ export default function Hero() {
         const rotate = currentProgress * 6;
         const scale = 1 - currentProgress * 0.18;
         const opacity = Math.max(0, 1 - currentProgress * 3.33);
-        
+
         footerRight.style.transform = `translate(${transX}vw, ${transY}vh) rotate(${rotate}deg) scale(${scale})`;
         footerRight.style.opacity = opacity.toString();
         footerRight.style.pointerEvents = opacity <= 0.02 ? "none" : "auto";
@@ -147,16 +146,12 @@ export default function Hero() {
         video.style.transform = `translateY(${videoTransY}vh) scale(1.06)`;
       }
 
-      // 6. Direct DOM styling for video overlay parallax
-      const videoOverlay = videoOverlayRef.current;
-      if (videoOverlay) {
-        const overlayTransY = currentProgress * -15;
-        videoOverlay.style.transform = `translateY(${overlayTransY}vh)`;
-      }
-
-      // 7. Gated Seeking Queue Control (Decoder-Optimized Scrubbing)
+      // 6. Gated Seeking Queue Control (Decoder-Optimized Scrubbing)
       if (video.duration && !isNaN(video.duration)) {
-        const targetTime = currentProgress * video.duration;
+        // Map scroll progress 0.0 -> 0.5 to video time 0.0 -> duration.
+        // This ensures the video ends scrubbing BEFORE the next section enters.
+        const videoProgress = Math.min(1, currentProgress / 0.5);
+        const targetTime = videoProgress * video.duration;
         // Check seek gate: do not seek if decoder is busy, and target is noticeably different
         if (!video.seeking && Math.abs(video.currentTime - targetTime) > 0.005) {
           video.currentTime = targetTime;
@@ -192,8 +187,8 @@ export default function Hero() {
           Your browser does not support the video tag.
         </video>
 
-        {/* Cinematic Vignette Overlay */}
-        <div ref={videoOverlayRef} className={styles.videoOverlay} />
+        {/* Cinematic Split-Toning Color Grade & Vignette */}
+        <div className={styles.colorGradeOverlay} />
 
         {/* Header / Navigation Bar */}
         <header ref={headerRef} className={styles.header}>
@@ -266,9 +261,8 @@ export default function Hero() {
 
           {/* Search Bar Capsule */}
           <div
-            className={`${styles.searchCapsule} ${
-              isSearchFocused ? styles.focused : ""
-            }`}
+            className={`${styles.searchCapsule} ${isSearchFocused ? styles.focused : ""
+              }`}
           >
             <input
               type="text"

@@ -32,24 +32,34 @@
   object-fit: cover;
   z-index: 1;
   pointer-events: none;
+  /* Cinematic contrast, brightness and warm film patina */
+  filter: contrast(1.08) brightness(1.02) saturate(0.95) sepia(0.04);
 }
 
-/* Subtle overlay to enhance readability */
-.videoOverlay {
+/* Cinematic Split-Toning Color Grade & Vignette */
+.colorGradeOverlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  /* Split-toning: warm peach highlights at top-left to cool cyan shadows at bottom-right */
   background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.4) 0%,
-    rgba(0, 0, 0, 0.1) 40%,
-    rgba(0, 0, 0, 0.1) 60%,
-    rgba(0, 0, 0, 0.45) 100%
-  );
+      135deg,
+      rgba(255, 210, 180, 0.16) 0%,
+      rgba(165, 210, 255, 0.12) 100%
+    ),
+    /* Soft light editorial vignette */
+    radial-gradient(
+      circle at center,
+      rgba(255, 255, 255, 0) 30%,
+      rgba(255, 255, 255, 0.12) 100%
+    );
+  mix-blend-mode: soft-light;
+  pointer-events: none;
   z-index: 2;
 }
+
 
 /* Header & Navigation Capsule */
 .header {
