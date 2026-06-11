@@ -1,0 +1,564 @@
+.container {
+  background-color: #ffffff;
+  color: #121212;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 -15px 40px rgba(0, 0, 0, 0.06);
+}
+
+/* 1. Stats Section */
+.statsSection {
+  padding: 100px 40px;
+  background-color: #f7f9fa;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  display: flex;
+  justify-content: center;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  max-width: 1120px;
+  gap: 40px;
+}
+
+.statCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  padding: 20px 0;
+}
+
+.statsGrid > div:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: -20px;
+  top: 25%;
+  height: 50%;
+  width: 1px;
+  background-color: rgba(0, 0, 0, 0.06);
+}
+
+.statValue {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 5.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #121212;
+  letter-spacing: -2px;
+  background: linear-gradient(to bottom, #111111 60%, rgba(0, 0, 0, 0.65) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.statLabel {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: rgba(0, 0, 0, 0.55);
+  margin-top: 16px;
+  text-transform: uppercase;
+  max-width: 200px;
+  line-height: 1.5;
+}
+
+/* 2. Paradox of Power Section */
+.storySection {
+  padding: 120px 40px;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+.storyContentGrid {
+  display: grid;
+  grid-template-columns: 1.1fr 1.3fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.storyHeader {
+  position: sticky;
+  top: 40px;
+}
+
+.storyTitle {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 4rem;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -1.5px;
+  color: #121212;
+}
+
+.storyTitleHighlight {
+  font-family: var(--font-rosmatika), serif;
+  font-weight: 400;
+  letter-spacing: 0px;
+  color: #121212;
+}
+
+.storyTextContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.storyParagraph {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 19px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: rgba(0, 0, 0, 0.78);
+  letter-spacing: 0.1px;
+}
+
+.storyParagraphSub {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: rgba(0, 0, 0, 0.5);
+  border-left: 2px solid rgba(0, 0, 0, 0.08);
+  padding-left: 20px;
+  margin-top: 8px;
+}
+
+.storyCta {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  align-self: flex-start;
+  color: #121212;
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  padding: 8px 0 12px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.storyCtaArrow {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.storyCta:hover {
+  border-color: #000000;
+  color: #000000;
+}
+
+.storyCta:hover .storyCtaArrow {
+  transform: translateX(6px);
+}
+
+/* Visual Image Banner */
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 540px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.15);
+}
+
+.storyImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.imageWrapper:hover .storyImage {
+  transform: scale(1.03);
+}
+
+.imageOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.3) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+/* 3. Configure Banner Section (Light Surreal Ambient) */
+.configureSection {
+  position: relative;
+  width: 100%;
+  height: 560px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.configureBg {
+  object-fit: cover;
+  z-index: 1;
+}
+
+.configureOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.85) 0%,
+    rgba(255, 255, 255, 0.65) 50%,
+    rgba(255, 255, 255, 0.9) 100%
+  );
+  z-index: 2;
+}
+
+.configureContent {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 900px;
+  padding: 0 40px;
+}
+
+.configureTextGroup {
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bannerSubtitle {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 4px;
+  color: rgba(0, 0, 0, 0.55);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.bannerMainTitle {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 3.2rem;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -1.5px;
+  color: #121212;
+  margin-top: 16px;
+  max-width: 800px;
+}
+
+.configureCta {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: #ffffff;
+  background-color: #0c0c0c;
+  border: none;
+  border-radius: 9999px;
+  height: 54px;
+  padding: 0 36px;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.configureCta:hover {
+  background-color: #222222;
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.configureCta:active {
+  transform: scale(0.97);
+}
+
+/* 4. Footer Section (Light Minimalist) */
+.footer {
+  background-color: #f7f8f9;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 100px 40px 40px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footerMainGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 2fr;
+  width: 100%;
+  max-width: 1120px;
+  gap: 60px;
+  margin-bottom: 80px;
+}
+
+.footerBrandCol {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.brandTitle {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #121212;
+}
+
+.brandText {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.6;
+  color: rgba(0, 0, 0, 0.55);
+  max-width: 280px;
+}
+
+.footerNavCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.colTitle {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  color: rgba(0, 0, 0, 0.45);
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+
+.footerList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.footerList a {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.6);
+  transition: color 0.25s ease, transform 0.25s ease;
+  display: inline-block;
+}
+
+.footerList a:hover {
+  color: #000000;
+  transform: translateX(4px);
+}
+
+.footerConnectCol {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.subscribeText {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.6;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+.subscribeForm {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 48px;
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 9999px;
+  padding: 0 4px 0 20px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.subscribeForm:focus-within {
+  border-color: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.subscribeInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #121212;
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 14px;
+  height: 100%;
+}
+
+.subscribeInput::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.subscribeButton {
+  background-color: #0c0c0c;
+  border: none;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.subscribeButton:hover {
+  background-color: #222222;
+  transform: scale(1.05);
+}
+
+.subscribeButton.success {
+  background-color: #4caf50;
+  color: #ffffff;
+}
+
+/* Footer Bottom Bar */
+.footerBottom {
+  width: 100%;
+  max-width: 1120px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  padding-top: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.copyright {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.45);
+  letter-spacing: 0.5px;
+}
+
+.legalLinks {
+  display: flex;
+  gap: 28px;
+}
+
+.legalLinks a {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  color: rgba(0, 0, 0, 0.45);
+  transition: color 0.25s ease;
+}
+
+.legalLinks a:hover {
+  color: #000000;
+}
+
+/* Responsiveness break points */
+@media (max-width: 1024px) {
+  .footerMainGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  .statsGrid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .statsGrid > div:not(:last-child)::after {
+    display: none;
+  }
+
+  .statValue {
+    font-size: 4.2rem;
+  }
+
+  .storyContentGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .storyHeader {
+    position: relative;
+    top: 0;
+  }
+
+  .storyTitle {
+    font-size: 2.8rem;
+  }
+
+  .storyParagraph {
+    font-size: 17px;
+  }
+
+  .imageWrapper {
+    height: 380px;
+  }
+
+  .bannerMainTitle {
+    font-size: 2.2rem;
+  }
+
+  .configureSection {
+    height: 460px;
+  }
+
+  .footerMainGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .footerBottom {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .statsSection,
+  .storySection,
+  .configureSection,
+  .footer {
+    padding: 60px 20px;
+  }
+
+  .bannerMainTitle {
+    font-size: 1.8rem;
+  }
+
+  .imageWrapper {
+    height: 280px;
+  }
+}
