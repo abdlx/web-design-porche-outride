@@ -37,6 +37,7 @@ export const metadata: Metadata = {
 };
 
 import SmoothScroll from "./components/SmoothScroll";
+import InteractiveVisuals from "./components/InteractiveVisuals";
 
 export default function RootLayout({
   children,
@@ -46,6 +47,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${outfit.variable} ${playfair.variable} ${rosmatika.variable}`}>
       <body>
+        <InteractiveVisuals />
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>

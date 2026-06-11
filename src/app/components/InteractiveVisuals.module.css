@@ -1,0 +1,82 @@
+/* Interactive Cursor Follower */
+.customCursor {
+  position: fixed;
+  top: -12px; /* Center alignment offset based on size */
+  left: -12px;
+  width: 24px;
+  height: 24px;
+  border: 1px solid rgba(210, 145, 112, 0.75); /* Terracotta ring */
+  background: rgba(250, 248, 245, 0.05);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  mix-blend-mode: difference;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hide custom cursor on tablets and mobile screens */
+@media (pointer: coarse) {
+  .customCursor {
+    display: none;
+  }
+}
+
+.customCursor.hovered {
+  top: -24px;
+  left: -24px;
+  width: 48px;
+  height: 48px;
+  background: rgba(210, 145, 112, 0.12);
+  border-color: rgba(210, 145, 112, 1);
+  mix-blend-mode: normal;
+}
+
+.customCursor.hasText {
+  top: -30px;
+  left: -30px;
+  width: 60px;
+  height: 60px;
+  background: #1c1a17; /* Solid warm onyx */
+  border-color: #1c1a17;
+  mix-blend-mode: normal;
+}
+
+.cursorText {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #faf8f5;
+  text-transform: uppercase;
+  margin-top: 1px;
+}
+
+/* Surreal Floating Light Dust */
+.dustContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1; /* Sits behind content layers but in front of background colors */
+  overflow: hidden;
+}
+
+.dustParticle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 238, 222, 0.75) 0%,
+    rgba(210, 145, 112, 0.25) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  filter: blur(1.5px);
+}

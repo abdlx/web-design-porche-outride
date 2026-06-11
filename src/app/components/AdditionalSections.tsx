@@ -9,6 +9,32 @@ export default function AdditionalSections() {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
 
+  // 3D Tilt Hover State
+  const [tiltStyle, setTiltStyle] = useState<React.CSSProperties>({});
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    // Subtle 3D perspective tilt (max 7 degrees)
+    const rotateX = ((rect.height / 2 - y) / (rect.height / 2)) * 7;
+    const rotateY = ((x - rect.width / 2) / (rect.width / 2)) * 7;
+
+    setTiltStyle({
+      transform: `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.025)`,
+      transition: "transform 0.15s cubic-bezier(0.25, 1, 0.5, 1)",
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setTiltStyle({
+      transform: "perspective(1200px) rotateX(0deg) rotateY(0deg) scale(1)",
+      transition: "transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)",
+    });
+  };
+
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
     if (email) {
@@ -160,8 +186,11 @@ export default function AdditionalSections() {
             <div className={styles.imageContainer}>
               <motion.div
                 className={styles.imageWrapper}
+                style={tiltStyle}
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
                 initial={{ opacity: 0, scale: 0.98 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
               >

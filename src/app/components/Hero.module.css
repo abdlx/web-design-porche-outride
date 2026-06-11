@@ -183,7 +183,7 @@
   align-items: center;
   text-align: center;
   max-width: 800px;
-  margin-top: -4vh; /* Slightly offset up for visually perfect center */
+  margin-top: -18vh; /* Moved higher to float in sky and clear the foreground car */
   z-index: 3;
   will-change: transform, opacity;
 }

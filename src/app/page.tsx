@@ -3,7 +3,7 @@ import AdditionalSections from "./components/AdditionalSections";
 
 export default function Home() {
   return (
-    <main style={{ backgroundColor: "#ffffff", minHeight: "100vh" }}>
+    <main style={{ backgroundColor: "#faf8f5", minHeight: "100vh" }}>
       <Hero />
       <AdditionalSections />
     </main>
